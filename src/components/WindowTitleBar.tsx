@@ -55,7 +55,7 @@ export default function WindowTitleBar() {
                 className="w-4 h-4 mx-2"
                 src="../../src-tauri/icons/icon.ico"
               />
-              <p className="text-[0.8rem]">blank-tauri-app-v1</p>
+              <p className="text-[0.8rem]">GPause 2</p>
             </div>
             <div className="flex flex-row w-max h-full *:h-full *:transition-colors *:duration-200">
               <button
