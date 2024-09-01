@@ -1,0 +1,10 @@
+{
+  "tauri": {
+    "windows": [
+      {
+        "label": "main",
+        "decorations": false
+      }
+    ]
+  }
+}

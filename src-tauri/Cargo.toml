@@ -1,0 +1,21 @@
+[package]
+name = "blank-tauri-app-v1"
+version = "0.1.0"
+description = "A Tauri App"
+authors = ["you"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1", features = [] }
+
+[dependencies]
+tauri = { version = "1", features = [ "os-all", "window-start-dragging", "window-hide", "window-minimize", "window-unmaximize", "window-show", "window-maximize", "window-close", "window-unminimize", "shell-open"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+window-shadows = "0.2.2"
+
+[features]
+# This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
