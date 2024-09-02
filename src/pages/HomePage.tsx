@@ -16,6 +16,7 @@ import {
   Code,
   Link,
   ScrollShadow,
+  Spinner,
 } from "@nextui-org/react";
 import {
   ArrowPathIcon,
@@ -24,13 +25,17 @@ import {
   PlayIcon,
   XMarkIcon,
 } from "../icons";
+import { process } from "@tauri-apps/api";
 
 export default function HomePage() {
   const [runningProcesses, setRunningProcesses] =
     useState<RunningProcesses | null>(null);
 
   const PopulateProcessesList = () => {
-    GetRunningProcesses().then((processes) => setRunningProcesses(processes));
+    GetRunningProcesses().then((processes) => {
+      setRunningProcesses(processes);
+      console.log(processes);
+    });
   };
   useEffect(() => {
     PopulateProcessesList();
@@ -44,7 +49,12 @@ export default function HomePage() {
             <Button
               onPress={PopulateProcessesList}
               variant="flat"
-              startContent={<ArrowPathIcon />}
+              size="sm"
+              startContent={
+                <div className="scale-[70%]">
+                  <ArrowPathIcon />
+                </div>
+              }
             >
               Refresh
             </Button>
@@ -145,6 +155,21 @@ export default function HomePage() {
                   </Card>
                 </div>
               ))}
+              {runningProcesses.processes.length === 0 && (
+                <div className="w-full h-[55vh] text-center flex flex-col justify-center">
+                  <div className="flex flex-col gap-2">
+                    <p className="text-xl">No managable apps are opened.</p>
+                    <p className="text-sm">
+                      Open a few apps and games to get started.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          {!runningProcesses && (
+            <div className="w-full h-full text-center flex flex-col justify-center">
+              <Spinner label="Loading" size="lg" />
             </div>
           )}
         </ScrollShadow>
