@@ -4,9 +4,11 @@ import WindowTitleBar from "../components/WindowTitleBar";
 export default function DefaultLayout() {
   return (
     <div className="relative flex flex-col justify-between">
-      <div className="flex flex-col min-h-screen">
-        <WindowTitleBar />
-        <div className="flex-grow relative">
+      <div className="relative flex flex-col">
+        <div className="absolute top-0 left-0 right-0 z-50">
+          <WindowTitleBar />
+        </div>
+        <div className="flex-grow relative h-screen">
           <Outlet />
         </div>
       </div>

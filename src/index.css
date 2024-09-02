@@ -15,3 +15,32 @@
   user-select: none;
   -webkit-user-drag: none;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 1000px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 1000px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 1000px;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #000;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #222;
+  }
+}

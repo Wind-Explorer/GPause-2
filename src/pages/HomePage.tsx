@@ -9,7 +9,14 @@ import {
   MinimizeProcess,
   OpenProcessPathInFileExplorer,
 } from "../sidecar/GPauseCore";
-import { Button, ButtonGroup, Card, Code, Link } from "@nextui-org/react";
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  Code,
+  Link,
+  ScrollShadow,
+} from "@nextui-org/react";
 import {
   ArrowPathIcon,
   ArrowTopRightOnSquareIcon,
@@ -29,23 +36,25 @@ export default function HomePage() {
     PopulateProcessesList();
   }, []);
   return (
-    <div className="p-10">
-      <div className="flex flex-col gap-8">
-        <div className="w-full flex flex-row justify-between *:my-auto">
-          <p className="text-3xl">Running Apps</p>
-          <Button
-            onPress={PopulateProcessesList}
-            variant="flat"
-            startContent={<ArrowPathIcon />}
-          >
-            Refresh
-          </Button>
+    <div className="h-full">
+      <div className="flex flex-col gap-2 h-full *:mx-auto">
+        <div className="flex-none w-full max-w-[1000px]">
+          <div className="w-full flex flex-row justify-between *:my-auto p-10 pb-0">
+            <p className="text-3xl">Opened Apps</p>
+            <Button
+              onPress={PopulateProcessesList}
+              variant="flat"
+              startContent={<ArrowPathIcon />}
+            >
+              Refresh
+            </Button>
+          </div>
         </div>
-        <div>
+        <ScrollShadow className="flex-grow overflow-auto w-full *:mx-auto">
           {runningProcesses && (
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 p-10 max-w-[1000px]">
               {runningProcesses?.processes.map((process) => (
-                <div key={process.id}>
+                <div className="" key={process.id}>
                   <Card className="group">
                     <div className="">
                       <div className="relative h-full flex flex-row justify-between">
@@ -138,7 +147,7 @@ export default function HomePage() {
               ))}
             </div>
           )}
-        </div>
+        </ScrollShadow>
       </div>
     </div>
   );

@@ -47,16 +47,8 @@ export default function WindowTitleBar() {
               : "relative w-full h-[30px]"
           }
         >
-
           <div className="w-full h-full *:my-auto flex flex-row justify-between">
-            <div className="relative flex flex-row flex-grow *:my-auto">
-              <div data-tauri-drag-region className="absolute w-full h-full"></div>
-              <img
-                className="w-4 h-4 mx-2"
-                src="../../src-tauri/icons/icon.ico"
-              />
-              <p className="text-[0.8rem]">GPause 2</p>
-            </div>
+            <div data-tauri-drag-region className="flex-grow h-full"></div>
             <div className="flex flex-row w-max h-full *:h-full *:transition-colors *:duration-200">
               <button
                 onClick={() => {
