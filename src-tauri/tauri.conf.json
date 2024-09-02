@@ -1,7 +1,7 @@
 {
   "build": {
-    "beforeDevCommand": "pnpm dev",
-    "beforeBuildCommand": "pnpm build",
+    "beforeDevCommand": "powershell ./bundle-sidecar.ps1 && pnpm dev",
+    "beforeBuildCommand": "powershell ./bundle-sidecar.ps1 && pnpm build",
     "devPath": "http://localhost:1420",
     "distDir": "../dist"
   },
@@ -61,9 +61,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "externalBin": [
-        "binaries/GPauseCore"
-      ]
+      "externalBin": ["binaries/GPauseCore"]
     }
   }
 }
