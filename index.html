@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gpause-2</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gpause-2</title>
-</head>
+  <body class="text-foreground bg-background absolute inset-0">
+    <script type="module">
+      const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+      const body = document.querySelector("body");
 
-<body class="text-foreground bg-background absolute inset-0">
-  <script type="module">
-    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
-    const body = document.querySelector("body");
-
-    function updateTheme() {
-      if (prefersDarkMode.matches) {
-        body.classList.add("dark");
-      } else {
-        body.classList.remove("dark");
+      function updateTheme() {
+        if (prefersDarkMode.matches) {
+          body.classList.add("dark");
+        } else {
+          body.classList.remove("dark");
+        }
       }
-    }
 
-    updateTheme();
-    prefersDarkMode.addEventListener("change", updateTheme);
+      updateTheme();
+      prefersDarkMode.addEventListener("change", updateTheme);
 
-    document.addEventListener('contextmenu', event => {
-      event.preventDefault();
-    });
-
-  </script>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
-
+      document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+      });
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

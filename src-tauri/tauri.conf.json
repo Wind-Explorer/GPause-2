@@ -17,7 +17,15 @@
       },
       "shell": {
         "all": false,
-        "open": true
+        "open": true,
+        "sidecar": true,
+        "scope": [
+          {
+            "name": "binaries/GPauseCore",
+            "sidecar": true,
+            "args": true
+          }
+        ]
       },
       "window": {
         "all": false,
@@ -52,6 +60,9 @@
         "icons/128x128@2x.png",
         "icons/icon.icns",
         "icons/icon.ico"
+      ],
+      "externalBin": [
+        "binaries/GPauseCore"
       ]
     }
   }
