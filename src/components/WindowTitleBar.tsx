@@ -2,10 +2,23 @@ import { os } from "@tauri-apps/api";
 import { appWindow } from "@tauri-apps/api/window";
 import { useEffect, useState } from "react";
 import { debounce } from "lodash";
+import {
+  Link,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/react";
+import { InformationCircleIcon } from "../icons";
+import { open } from "@tauri-apps/api/shell";
 
 export default function WindowTitleBar() {
   const [osType, setOsType] = useState<string>("");
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
+
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
     os.type().then((type) => {
@@ -50,6 +63,14 @@ export default function WindowTitleBar() {
           <div className="w-full h-full *:my-auto flex flex-row justify-between">
             <div data-tauri-drag-region className="flex-grow h-full"></div>
             <div className="flex flex-row w-max h-full *:h-full *:transition-colors *:duration-200">
+              <button
+                onClick={onOpen}
+                className="hover:bg-neutral-200 hover:dark:bg-neutral-800 h-full"
+              >
+                <div className="scale-[70%] w-8 *:mx-auto">
+                  <InformationCircleIcon />
+                </div>
+              </button>
               <button
                 onClick={() => {
                   appWindow.minimize();
@@ -97,6 +118,42 @@ export default function WindowTitleBar() {
       {osType === "Darwin" && !isMaximized && (
         <div data-tauri-drag-region className="relative w-full h-[28px]"></div>
       )}
+      <Modal size="sm" isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {() => (
+            <>
+              <ModalHeader></ModalHeader>
+              <ModalBody>
+                <div className="w-full">
+                  <div className="flex flex-col gap-8 w-full *:m-auto">
+                    <img
+                      className="w-40 h-40"
+                      src="/icon.png"
+                      alt="GPause Icon"
+                    />
+                    <div className="flex flex-col gap-4 text-center *:mx-auto">
+                      <p className="text-2xl font-bold">GPause 2</p>
+
+                      <div className="flex flex-col gap-2">
+                        <p>Put your opened apps and games to sleep</p>
+                        <p className="opacity-50 text-sm">By Adam C</p>
+                      </div>
+                      <Link
+                        onPress={() => {
+                          open("https://github.com/wind-explorer/gpause-2");
+                        }}
+                      >
+                        View on GitHub
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter></ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   );
 }
