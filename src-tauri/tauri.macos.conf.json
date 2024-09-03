@@ -3,6 +3,7 @@
     "windows": [
       {
         "label": "main",
+        "title": "GPause 2",
         "titleBarStyle": "Overlay",
         "hiddenTitle": true,
         "minWidth": 600,

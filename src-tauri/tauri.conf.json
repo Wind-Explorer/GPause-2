@@ -6,8 +6,8 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "gpause-2",
-    "version": "0.1.0"
+    "productName": "GPause-2",
+    "version": "1.0.0"
   },
   "tauri": {
     "allowlist": {
@@ -42,7 +42,6 @@
     "windows": [
       {
         "label": "main",
-        "title": "gpause-2",
         "width": 800,
         "height": 600
       }
@@ -53,7 +52,7 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "cn.Wind-Explorer.gpause-2",
+      "identifier": "cn.Wind-Explorer.GPause-2",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",

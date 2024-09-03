@@ -3,6 +3,7 @@
     "windows": [
       {
         "label": "main",
+        "title": "GPause 2",
         "decorations": false,
         "minWidth": 600,
         "minHeight": 400
