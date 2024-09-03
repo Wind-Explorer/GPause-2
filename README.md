@@ -8,7 +8,7 @@ Puts your opened apps and games to sleep 🛏️
 
 ### Why?
 
-- Brings mobile-like background app suspend to Windows 📱
+- Brings mobile-like background app suspend to Windows 📱🤝🖥️
 - Saves CPU, GPU usage, and for laptops, battery life 🔋
 - Console-like quick pause & resume experience 🎮
 - Eliminates the need to close apps to fix lag ❌
