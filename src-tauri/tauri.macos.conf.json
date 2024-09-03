@@ -4,7 +4,9 @@
       {
         "label": "main",
         "titleBarStyle": "Overlay",
-        "hiddenTitle": true
+        "hiddenTitle": true,
+        "minWidth": 600,
+        "minHeight": 400
       }
     ]
   }
