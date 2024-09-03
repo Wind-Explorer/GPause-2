@@ -15,12 +15,19 @@ import {
   Card,
   Code,
   Link,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
   ScrollShadow,
   Spinner,
+  useDisclosure,
 } from "@nextui-org/react";
 import {
   ArrowPathIcon,
   ArrowTopRightOnSquareIcon,
+  ExclamationTriangleIcon,
   PauseIcon,
   PlayIcon,
   XMarkIcon,
@@ -31,10 +38,17 @@ export default function HomePage() {
   const [runningProcesses, setRunningProcesses] =
     useState<RunningProcesses | null>(null);
 
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const [shownAdminDialog, setShownAdminDialog] = useState(false);
+
   const PopulateProcessesList = () => {
     GetRunningProcesses().then((processes) => {
       setRunningProcesses(processes);
-      console.log(processes);
+      if (!shownAdminDialog && processes.encounteredProblems) {
+        onOpen();
+        setShownAdminDialog(processes.encounteredProblems);
+      }
     });
   };
   useEffect(() => {
@@ -46,18 +60,37 @@ export default function HomePage() {
         <div className="flex-none w-full max-w-[1000px]">
           <div className="w-full flex flex-row justify-between *:my-auto p-10 pb-0">
             <p className="text-3xl">Opened Apps</p>
-            <Button
-              onPress={PopulateProcessesList}
-              variant="flat"
-              size="sm"
-              startContent={
-                <div className="scale-[70%]">
-                  <ArrowPathIcon />
-                </div>
-              }
-            >
-              Refresh
-            </Button>
+            <div className="flex flex-row gap-4">
+              {runningProcesses?.encounteredProblems && (
+                <Button
+                  onPress={onOpen}
+                  size="sm"
+                  variant="light"
+                  color="danger"
+                  className="text-md"
+                  startContent={
+                    <div className="scale-[70%] ">
+                      <ExclamationTriangleIcon />
+                    </div>
+                  }
+                >
+                  Insufficient priviledges
+                </Button>
+              )}
+              <Button
+                onPress={PopulateProcessesList}
+                variant="flat"
+                size="sm"
+                className="text-md"
+                startContent={
+                  <div className="scale-[70%] ">
+                    <ArrowPathIcon />
+                  </div>
+                }
+              >
+                Refresh
+              </Button>
+            </div>
           </div>
         </div>
         <ScrollShadow className="flex-grow overflow-auto w-full *:mx-auto">
@@ -174,6 +207,26 @@ export default function HomePage() {
           )}
         </ScrollShadow>
       </div>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Some apps can't be managed
+              </ModalHeader>
+              <ModalBody>
+                <p>
+                  Run this app as administrator to gain access to the rest of
+                  the opened apps.
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button onPress={onClose}>Dismiss</Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 }

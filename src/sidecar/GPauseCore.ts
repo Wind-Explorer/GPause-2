@@ -11,6 +11,7 @@ export interface RunningProcess {
 
 export interface RunningProcesses {
   processes: RunningProcess[];
+  encounteredProblems: boolean;
 }
 
 export async function GetRunningProcesses(): Promise<RunningProcesses> {
@@ -18,6 +19,7 @@ export async function GetRunningProcesses(): Promise<RunningProcesses> {
     "huo-qv-yun-xing-zhong-cheng-xv",
   ]);
   let result = await command.execute();
+  console.log(result);
   return JSON.parse(result.stdout) as RunningProcesses;
 }
 
